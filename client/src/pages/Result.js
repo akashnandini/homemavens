@@ -109,7 +109,7 @@ class Result extends Component {
                     Address Listing
               </div>
               <div class="card-body" style={{ backgroundColor: "lightgrey",color: "black"}}>
-                <img src={this.props.mapUrl ? this.props.mapUrl : this.state.mapUrl} alt="MapUrl"/>
+                <img className="maps" src={this.props.mapUrl ? this.props.mapUrl : this.state.mapUrl} alt="MapUrl"/>
                     <ul style={{marginTop:"20px"}}>
                         <li>
                         Address:
@@ -179,7 +179,7 @@ class Result extends Component {
                  
                     <br></br>
                     {this.state.address?
-                    (<div><img style={{marginLeft:"25px"}} src={this.props.mapUrl ? this.props.mapUrl : this.state.mapUrl} alt="MapUrl"/>
+                    (<div><img className="maps" style={{marginLeft:"25px"}} src={this.props.mapUrl ? this.props.mapUrl : this.state.mapUrl} alt="MapUrl"/>
                     <ul>
                       <li>
                         Address:

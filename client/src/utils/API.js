@@ -48,7 +48,7 @@ export default {
   displayMap: function (address) {
 
 
-    var url = "http://www.mapquestapi.com/geocoding/v1/address?key=ZPViVitEZfDIkNDJDVplI6lK2sz0ShE7&location=" + address;
+    var url = "https://www.mapquestapi.com/geocoding/v1/address?key=ZPViVitEZfDIkNDJDVplI6lK2sz0ShE7&location=" + address;
 
     console.log("Url==" + url);
     return (axios.get(url));
