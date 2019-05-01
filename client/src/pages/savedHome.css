@@ -1,0 +1,22 @@
+.btnNew{
+    float:right;
+    margin-right:5px;
+}
+.left{
+    float:left;
+}
+#synopsis{ 
+    float:left;   
+    text-align: justify;
+    text-justify: inter-word;  
+    margin-left:35px; 
+}
+
+
+@media only screen and (max-width: 600px) {
+    .card {
+     width:430px;
+     margin-left: 10px;
+     
+    }
+  }

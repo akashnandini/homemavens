@@ -1,0 +1,20 @@
+.jumbotron{
+    background-color: rgba(0,0,0,0.3);
+    box-shadow: 0 0 0.8823em 0 rgba(0,0,0,0.5);
+    color: white;
+    font-weight: bolder;
+    background-size: cover;
+    width:80%;
+    margin-left:130px;
+    height:650px;
+    margin-top:25px;
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .jumbotron {
+     width:430px;
+     margin-left: 10px;
+     
+    }
+  }

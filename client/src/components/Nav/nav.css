@@ -1,0 +1,19 @@
+
+.bg-primary{
+    background-color: rgb(43, 43, 82) !important;
+}
+.right{
+    float:right;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+     width:440px;
+     margin-left:0px;
+     
+    }
+    .home{
+        font-size: 12px;
+    }
+  }
