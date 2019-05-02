@@ -14,6 +14,7 @@ class SignUpForm extends Component {
         super();
         this.state = {
             email: '',
+            password:'',
             flag: false,
             user: [],
             usr: []
@@ -53,7 +54,7 @@ class SignUpForm extends Component {
                     this.findUser();
                 } else {
                     console.log("oh no");
-                    document.getElementById("error").innerHTML = "Please enter a valid email address";
+                    document.getElementById("error").innerHTML = "Please enter a valid email address or password";
                 }
 
             }
@@ -65,8 +66,7 @@ class SignUpForm extends Component {
 
 
     findUser() {
-
-        this.setState({ usr: this.state.user.filter(usrs => usrs.email === this.state.email) });
+        this.setState({ usr: this.state.user.filter(usrs => (usrs.email === this.state.email) && (usrs.password === this.state.password)) });
         console.log(this.state.usr[0]);
         if (this.state.usr[0] != undefined) {
             console.log("its undefined man");
@@ -77,12 +77,12 @@ class SignUpForm extends Component {
             }
             else {
                 console.log("no User");
-                document.getElementById("error").innerHTML = "Please enter valid email address";
+                document.getElementById("error").innerHTML = "Please enter valid email address or password";
                 //document.getElementById("email-login").value="";
                
             }
        } else {
-           document.getElementById("error").innerHTML = "Please enter a valid email address";
+           document.getElementById("error").innerHTML = "Please enter a valid email address or password";
         }
 
     }
@@ -112,7 +112,7 @@ class SignUpForm extends Component {
                             value={this.state.password}
                             onChange={this.handleInputChange}
                             name="password"
-                            id="password"
+                            id="password-login"
                             placeholder="Enter your Password (Required)"
                             type="password"
                         />

@@ -12,7 +12,7 @@ module.exports = {
     },
     find: function (req, res) {
         db.User
-            .find({email:req.params.email})
+            .find({email:req.params.email,password:req.params.password})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
         console.log(res);
