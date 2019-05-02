@@ -98,7 +98,7 @@ class SignUpForm extends Component {
                 <legend>Sign In</legend>
                 <form>
                     <div class="form-group">
-
+                    <label for="email">Email</label>
                         <Input
                             value={this.state.email}
                             onChange={this.handleInputChange}
@@ -106,6 +106,15 @@ class SignUpForm extends Component {
                             id="email-login"
                             placeholder="Enter your Email (Required)"
                             onBlur={this.handleBlur}
+                        />
+                        <label for="password">Password</label>
+                        <Input
+                            value={this.state.password}
+                            onChange={this.handleInputChange}
+                            name="password"
+                            id="password"
+                            placeholder="Enter your Password (Required)"
+                            type="password"
                         />
                     </div>
 
@@ -124,7 +133,7 @@ class SignUpForm extends Component {
                                     Welcome {this.state.usr[0].name}
                                 </div>
                                 <div class="card-body" style={{ backgroundColor: "lightgrey", color: "black" }}>
-                                    <a href="/save"> <button type="button" className="btn btn-success mt-3">view saved homes</button></a>
+                                    <a href="/save"> <button type="button" className="btn btn-success mt-3">View Saved Homes</button></a>
                                 </div>
                             </div>
                         ) : (
