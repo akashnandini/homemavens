@@ -1,6 +1,7 @@
 import React from "react";
 import "./nav.css";
 
+
 function clearStorage(){
   // remove
   console.log("clearing storage");

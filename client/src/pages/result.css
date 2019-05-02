@@ -1,4 +1,7 @@
-
+.scroll {
+    max-height: 800px;
+    overflow-y: auto;
+ }
 
 
 @media only screen and (max-width: 600px) {

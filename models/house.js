@@ -7,7 +7,9 @@ const houseSchema = new Schema({
   building_type: String,
   finished_size: Number,
   year_built: Number,
-  email:String
+  email:String,
+  school:String,
+  price:Number
   //date: { type: Date, default: Date.now }
 });
 const House = mongoose.model("House", houseSchema);

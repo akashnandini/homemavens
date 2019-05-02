@@ -83,15 +83,15 @@ class SignUpForm extends Component {
                 <br></br>
                 <form>
                     <div class="form-group">
-                    <i class="fa fa-envelope" ></i><label for="full_name">Office Address:</label>
+                    <i class="fa fa-address-card" style={{color: "black",marginRight: "10px"}}></i><label for="full_name"> Office Address:</label>
                         <h6>19 Chestnut St, Edison, New Jersey, 08817</h6>
                     </div>                    
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                    <i class="fa fa-envelope" style={{color: "blue",marginRight: "10px"}}></i><label for="email">Email:</label>
                         <a href="#" style={{color:"white"}}><h6>homemavens@gmail.com</h6></a>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number:</label>
+                    <i class="fa fa-phone-square" style={{color: "green",marginRight: "10px"}}></i><label for="phone">Phone Number:</label>
                         <h6>+1 201-873-3626</h6>
                     </div>
                     

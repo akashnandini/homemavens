@@ -58,6 +58,7 @@ class SearchForm extends Component {
         building_type:response.data.property[0].summary.propclass,        
         finished_size:response.data.property[0].building.size.livingsize,
         year_built:response.data.property[0].summary.yearbuilt,
+        levels:response.data.property[0].summary.absenteeInd,
         url:"https://www.google.com/maps/place/"+response.data.property[0].address.oneLine,
         });
         
@@ -92,13 +93,31 @@ class SearchForm extends Component {
 
     this.searchHome();
     this.showMap();
+    this.showPrice();
      
   };
+
+  showPrice(){
+    var url = "https://api.estated.com/property/v3?token=g0u2vmspmXExqI4053XVqpEWm0V7Ct&address="+this.state.address+"&city="+this.state.city+"&state="+this.state.place;
+    console.log("Url=="+url);
+    axios.get(url).then(response => {
+      
+      console.log("price:  "+response.data.properties[0].sales[0].price);
+      console.log("school:  "+response.data.properties[0].geographies.school_elementary.name);
+
+      this.setState({
+        
+        school:response.data.properties[0].geographies.school_elementary.name,
+        price:response.data.properties[0].sales[0].price,
+        
+      });
+     })
+  }
 
   handleZipFormSubmit = event => {
     event.preventDefault();
     
-    var url= "https://search.onboard-apis.com/propertyapi/v1.0.0/property/address?postalcode=" + this.state.ZIP + "&page=1&pagesize=10"
+    var url= "https://search.onboard-apis.com/propertyapi/v1.0.0/property/address?postalcode=" + this.state.ZIP + "&page=1&pagesize=20"
     
     console.log("Url=="+url);
     axios.get( url,{
@@ -190,6 +209,8 @@ render() {
             finished_size={this.state.finished_size}
             year_built={this.state.year_built}
             zipresults={this.state.zipresults}
+            price={this.state.price}
+            school={this.state.school}
             mapUrl={this.state.mapUrl}
             url={this.state.url}
             

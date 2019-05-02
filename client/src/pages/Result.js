@@ -3,6 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import result from "./result.css";
+import axios from "axios";
 
 class Result extends Component {
   state = {
@@ -18,7 +19,8 @@ class Result extends Component {
     year_built: 0,
     house: [],
     mapUrl: "",
-    url:""
+    url:"",
+    price:0
   };
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -35,7 +37,9 @@ class Result extends Component {
       building_type: this.props.building_type ? this.props.building_type : this.state.building_type,
       finished_size: this.props.finished_size ? this.props.finished_size : this.state.finished_size,
       year_built: this.props.year_built ? this.props.year_built : this.state.year_built,
-      email:localStorage.getItem("email")
+      email:localStorage.getItem("email"),
+      school: this.props.school ? this.props.school : this.state.school,
+      price: this.props.price ? this.props.price : this.state.price,
 
     };
     console.log(dbHouse)
@@ -52,7 +56,26 @@ class Result extends Component {
       })
 
   };
+  showPrice(address1,address2,address3){
+    address1=address1.trim();
+    address2=address2.trim();
+    address3=address3.trim();
+    console.log("aaaaaaaaaaaaa:"+address1,address2,address3);
+    var url = "https://api.estated.com/property/v3?token=g0u2vmspmXExqI4053XVqpEWm0V7Ct&address="+address1+"&city="+address2+"&state="+address3;
+    console.log("Url=="+url);
+    axios.get(url).then(response => {
+      
+      console.log("price:  "+response.data.properties[0].sales[0].price);
+      console.log("school:  "+response.data.properties[0].geographies.school_elementary.name);
 
+      this.setState({
+        
+        school:response.data.properties[0].geographies.school_elementary.name,
+        price:response.data.properties[0].sales[0].price,
+        
+      });
+     })
+  }
 
   searchHome = (str) => {
     console.log("search home:  "+str);
@@ -71,7 +94,7 @@ class Result extends Component {
           address:response.data.property[0].address.oneLine,
           county:response.data.property[0].area.countrysecsubd,
           building_type:response.data.property[0].summary.propclass,
-          levels:response.data.property[0].summary.levels,
+          levels:response.data.property[0].summary.absenteeInd,
           finished_size:response.data.property[0].building.size.livingsize,
           year_built:response.data.property[0].summary.yearbuilt,
           zipFlag:true,
@@ -81,7 +104,7 @@ class Result extends Component {
       })
 
       .catch(err => console.log(err));
-       this.render();
+       this.showPrice(str1[0],str1[1],str2[1]);
   }
   showMap = (str) => {
     console.log("search Map");
@@ -99,6 +122,8 @@ class Result extends Component {
 
       this.render();
     }
+
+    
   render() {
 
     if (!this.props.flag || this.zipFlag) {
@@ -112,28 +137,36 @@ class Result extends Component {
                 <img className="maps" src={this.props.mapUrl ? this.props.mapUrl : this.state.mapUrl} alt="MapUrl"/>
                     <ul style={{marginTop:"20px"}}>
                         <li>
-                        Address:
+                        Address:&nbsp;&nbsp;
                         <span>{this.props.add}</span>
                         </li>
                         <li>
-                        County:
+                        County:&nbsp;&nbsp;
                         <span>{this.props.county}</span>
                         </li>
                         <li>
-                        Building Type:
+                        Building Type:&nbsp;&nbsp;
                         <span>{this.props.building_type }</span>
                         </li>
                         <li>
-                        Levels:
+                        Price:&nbsp;&nbsp;
+                        <span>{this.props.price}</span>
+                        </li>
+                        <li>
+                        Occupied:&nbsp;&nbsp;
                         <span>{this.props.levels }</span>
                         </li>
                         <li>
-                        Finished Size:
+                        Finished Size:&nbsp;&nbsp;
                         <span>{this.props.finished_size }</span>
                         </li>
                         <li>
-                        Year Built:
+                        Year Built:&nbsp;&nbsp;
                         <span>{this.props.year_built}</span>
+                        </li>
+                        <li>
+                        Nearby Schools:&nbsp;&nbsp;
+                        <span>{this.props.school}</span>
                         </li>
                     </ul>
                     <br></br>
@@ -159,7 +192,7 @@ class Result extends Component {
                   <div class="card-header" style={{ backgroundColor: "rgb(43, 43, 82)",color: "white"}}>
                       Lisiting by ZipCode
                   </div>
-                  <div class="card-body" style={{ backgroundImage:"../../public/car14.jpg",  backgroundColor: "lightgrey",color: "black"}}>
+                  <div className="card-body scroll" style={{ backgroundColor: "lightgrey",color: "black"}}>
                       <div className="row">
                       <div className="col-md-6">
                         <ol>
@@ -182,29 +215,37 @@ class Result extends Component {
                     (<div><img className="maps" style={{marginLeft:"25px"}} src={this.props.mapUrl ? this.props.mapUrl : this.state.mapUrl} alt="MapUrl"/>
                     <ul>
                       <li>
-                        Address:
+                        Address:&nbsp;&nbsp;
                         <span>{this.state.address}</span>
                       </li>
                       <li>
-                        County:
+                        County:&nbsp;&nbsp;
                         <span>{this.state.county}</span>
                       </li>
                       <li>
-                        Building Type:
+                        Building Type:&nbsp;&nbsp;
                         <span>{this.state.building_type}</span>
                       </li>
                       <li>
-                        Levels:
+                        Price:&nbsp;&nbsp;
+                        <span>{this.state.price}</span>
+                      </li>
+                      <li>
+                      Occupied:&nbsp;&nbsp;
                         <span>{this.state.levels}</span>
                       </li>
                       <li>
-                        Finished Size:
+                        Finished Size:&nbsp;&nbsp;
                         <span>{this.state.finished_size}</span>
                       </li>
                       <li>
-                        Year Built:
+                        Year Built:&nbsp;&nbsp;
                         <span>{this.state.year_built}</span>
                       </li>
+                      <li>
+                        Nearby Schools:&nbsp;&nbsp;
+                        <span>{this.state.school}</span>
+                        </li>
                     </ul>
                     <a target="_blank" href={this.state.url}>Get Directions</a>
                     {localStorage.getItem("email")?
